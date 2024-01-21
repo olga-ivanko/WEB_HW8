@@ -2,10 +2,12 @@ from connect import connect
 import redis
 from redis_lru import RedisLRU
 from models import Author, Quote
+from pprint import pprint
 
 
 client = redis.StrictRedis(host="localhost", port=6379, password=None)
 cache = RedisLRU(client)
+
 
 @cache
 def search_quotes(query):
@@ -14,7 +16,7 @@ def search_quotes(query):
     if query.startswith("name"):
         author_name = query.split(":")[1].strip()
         print(f"Author name to search: {author_name}")
-        author = Author.objects(fullname__icontains=author_name).first()
+        author = Author.objects(fullname__istartswith=author_name).first()
         if author:
             quotes = Quote.objects(author=author)
             return quotes
@@ -30,7 +32,7 @@ def search_quotes(query):
     elif query.startswith("tag"):
         tag = query.split(":")[1].strip()
         print(f"Tag to search: {tag}")
-        quotes = Quote.objects(tags__icontains=tag)
+        quotes = Quote.objects(tags__istartswith=tag)
         return quotes
 
     else:
@@ -48,4 +50,6 @@ if __name__ == "__main__":
         for quote in quotes_result:
             author_name = quote.author.fullname
             quote_text = quote.quote
+            tags = quote.tags
             print(f"Author: {author_name}, Quote: {quote_text}")
+            pprint(tags)
