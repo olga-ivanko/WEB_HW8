@@ -10,6 +10,7 @@ def send_email(contact):
     email = contact["email"]
     print(f"Mail to {name} on email:{email}")
     contact.is_sent = True
+    contact.save()
 
 
 def callback(ch, method, properties, body):
