@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.11"
 pymongo = "^4.6.1"
 mongoengine = "^0.27.0"
+redis = "^5.0.1"
+redis-lru = "^0.1.2"
 
 
 [build-system]

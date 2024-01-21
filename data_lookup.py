@@ -1,7 +1,13 @@
 from connect import connect
+import redis
+from redis_lru import RedisLRU
 from models import Author, Quote
 
 
+client = redis.StrictRedis(host="localhost", port=6379, password=None)
+cache = RedisLRU(client)
+
+@cache
 def search_quotes(query):
     print(f"Executing query: {query}")
 
