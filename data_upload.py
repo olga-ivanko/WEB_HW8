@@ -1,4 +1,4 @@
-from connect import connect
+from connection_mongodb import connect
 import json
 from datetime import datetime
 from models import Author, Quote
