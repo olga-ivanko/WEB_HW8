@@ -1,7 +1,6 @@
 import json
-from connection_mongodb import connect
-from connection_rabbit import channel, connection
-from contact_model import Contact
+from connection import connect, channel, connection
+from models import Contact
 
 
 # stub function:

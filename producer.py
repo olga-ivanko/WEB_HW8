@@ -1,8 +1,7 @@
 from faker import Faker
-from connection_mongodb import connect
-from contact_model import Contact
+from connection import connect, connection, channel
+from models import Contact
 import json
-from connection_rabbit import connection, channel
 
 
 num_of_contacts = 15

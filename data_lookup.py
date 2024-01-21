@@ -1,4 +1,4 @@
-from connection_mongodb import connect
+from connection import connect
 import redis
 from redis_lru import RedisLRU
 from models import Author, Quote
